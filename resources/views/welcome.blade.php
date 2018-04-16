@@ -7,6 +7,14 @@
     <title>Redis</title>
 </head>
 <body>
-<h1>Hello You are visitor number #{{$visits}}</h1>
+<h1>Videos</h1>
+
+@if(!is_null($downloads))
+    <p>this video download {{$downloads}} time</p>
+@else
+    <p>this video download No time</p>
+@endif
+{{--In PHP 7--}}
+{{--<p>this video download {{$downloads ?? "No"}} time</p>--}}
 </body>
 </html>
