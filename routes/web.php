@@ -1,7 +1,8 @@
 <?php
 
+//Index
 Route::get('/', function () {
-    return view('Welcome');
+    return view('front.home');
 });
 
 
