@@ -10,3 +10,6 @@ Route::get('contact', 'HomeController@getContact')->name('contact');
 Auth::routes();
 
 
+//Admin
+Route::get('admin', 'AdminController@index')->name('admin');
+
