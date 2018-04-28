@@ -12,4 +12,5 @@ Auth::routes();
 
 //Admin
 Route::get('admin', 'AdminController@index')->name('admin');
+Route::post('admin/add_product', 'AdminController@store')->name('add_product');
 

@@ -1,1058 +1,345 @@
 @extends('admin.master')
 
 @section('content')
-    <!-- container section start -->
-    <section id="container" class="">
+    @include('admin.includes.header')
 
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title">Add New Product</div>
 
-        <header class="header dark-bg">
-            <div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
-                            class="icon_menu"></i></div>
-            </div>
-
-            <!--logo start-->
-            <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
-            <!--logo end-->
-
-            <div class="nav search-row" id="top_menu">
-                <!--  search form start -->
-                <ul class="nav top-menu">
-                    <li>
-                        <form class="navbar-form">
-                            <input class="form-control" placeholder="Search" type="text">
+                        <div class="panel-options">
+                            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{route('add_product')}}" method="post">
+                            {{csrf_field()}}
+                            Product Name:
+                            <input type="text" name="pro_name" class="form-control">
+                            <br>
+                            Product Price:
+                            <input type="text" name="pro_price" class="form-control">
+                            <br>
+                            <input type="submit" value="submit" class="btn btn-success">
                         </form>
-                    </li>
-                </ul>
-                <!--  search form end -->
+                    </div>
+                </div>
             </div>
 
-            <div class="top-nav notification-row">
-                <!-- notificatoin dropdown start-->
-                <ul class="nav pull-right top-menu">
-
-                    <!-- task notificatoin start -->
-                    <li id="task_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-task-l"></i>
-                            <span class="badge bg-important">6</span>
-                        </a>
-                        <ul class="dropdown-menu extended tasks-bar">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 6 pending letter</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <div class="desc">Design PSD</div>
-                                        <div class="percent">90%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-success" role="progressbar"
-                                             aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 90%">
-                                            <span class="sr-only">90% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <div class="desc">
-                                            Project 1
-                                        </div>
-                                        <div class="percent">30%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar"
-                                             aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 30%">
-                                            <span class="sr-only">30% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <div class="desc">Digital Marketing</div>
-                                        <div class="percent">80%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" role="progressbar"
-                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 80%">
-                                            <span class="sr-only">80% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <div class="desc">Logo Designing</div>
-                                        <div class="percent">78%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar"
-                                             aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 78%">
-                                            <span class="sr-only">78% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <div class="desc">Mobile App</div>
-                                        <div class="percent">50%</div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="50"
-                                             aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                            <span class="sr-only">50% Complete</span>
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </li>
-                            <li class="external">
-                                <a href="#">See All Tasks</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- task notificatoin end -->
-                    <!-- inbox notificatoin start-->
-                    <li id="mail_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-envelope-l"></i>
-                            <span class="badge bg-important">5</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar"
-                                                             src="{{asset('image/admin/avatar-mini.jpg')}}"></span>
-                                    <span class="subject">
-                                    <span class="from">Greg  Martin</span>
-                                    <span class="time">1 min</span>
-                                    </span>
-                                    <span class="message">
-                                        I really like this admin panel.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar"
-                                                             src="{{asset('image/admin/avatar-mini2.jpg')}}"></span>
-                                    <span class="subject">
-                                    <span class="from">Bob   Mckenzie</span>
-                                    <span class="time">5 mins</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, What is next project plan?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar"
-                                                             src="{{asset('image/admin/avatar-mini3.jpg')}}"></span>
-                                    <span class="subject">
-                                    <span class="from">Phillip   Park</span>
-                                    <span class="time">2 hrs</span>
-                                    </span>
-                                    <span class="message">
-                                        I am like to buy this Admin Template.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar"
-                                                             src="{{asset('image/admin/avatar-mini4.jpg')}}"></span>
-                                    <span class="subject">
-                                    <span class="from">Ray   Munoz</span>
-                                    <span class="time">1 day</span>
-                                    </span>
-                                    <span class="message">
-                                        Icon fonts are great.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all messages</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- inbox notificatoin end -->
-                    <!-- alert notification start-->
-                    <li id="alert_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                            <i class="icon-bell-l"></i>
-                            <span class="badge bg-important">7</span>
-                        </a>
-                        <ul class="dropdown-menu extended notification">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 4 new notifications</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-primary"><i class="icon_profile"></i></span>
-                                    Friend Request
-                                    <span class="small italic pull-right">5 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-warning"><i class="icon_pin"></i></span>
-                                    John location.
-                                    <span class="small italic pull-right">50 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-danger"><i class="icon_book_alt"></i></span>
-                                    Project 3 Completed.
-                                    <span class="small italic pull-right">1 hr</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-success"><i class="icon_like"></i></span>
-                                    Mick appreciated your work.
-                                    <span class="small italic pull-right"> Today</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all notifications</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- alert notification end-->
-                    <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
-                            </span>
-                            <span class="username">Jenifer Smith</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-                            </li>
-                            <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
-                            </li>
-                            <li>
-                                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                            </li>
-                            <li>
-                                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                </ul>
-                <!-- notificatoin dropdown end-->
-            </div>
-        </header>
-        <!--header end-->
-
-        <!--sidebar start-->
-        <aside>
-            <div id="sidebar" class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu">
-                    <li class="active">
-                        <a class="" href="index.html">
-                            <i class="icon_house_alt"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="">
-                            <i class="icon_document_alt"></i>
-                            <span>Forms</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="form_component.html">Form Elements</a></li>
-                            <li><a class="" href="form_validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="">
-                            <i class="icon_desktop"></i>
-                            <span>UI Fitures</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="general.html">Elements</a></li>
-                            <li><a class="" href="buttons.html">Buttons</a></li>
-                            <li><a class="" href="grids.html">Grids</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="" href="widgets.html">
-                            <i class="icon_genius"></i>
-                            <span>Widgets</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="" href="chart-chartjs.html">
-                            <i class="icon_piechart"></i>
-                            <span>Charts</span>
-
-                        </a>
-
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="">
-                            <i class="icon_table"></i>
-                            <span>Tables</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="basic_table.html">Basic Table</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="">
-                            <i class="icon_documents_alt"></i>
-                            <span>Pages</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="profile.html">Profile</a></li>
-                            <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                            <li><a class="" href="blank.html">Blank Page</a></li>
-                            <li><a class="" href="404.html">404 Error</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
-
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
-                <!--overview start-->
+            <div class="col-md-6">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-                        <ol class="breadcrumb">
-                            <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                            <li><i class="fa fa-laptop"></i>Dashboard</li>
-                        </ol>
-                    </div>
-                </div>
+                    <div class="col-md-12">
+                        <div class="content-box-header">
+                            <div class="panel-title">New vs Returning Visitors</div>
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="info-box blue-bg">
-                            <i class="fa fa-cloud-download"></i>
-                            <div class="count">6.674</div>
-                            <div class="title">Download</div>
-                        </div><!--/.info-box-->
-                    </div><!--/.col-->
-
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="info-box brown-bg">
-                            <i class="fa fa-shopping-cart"></i>
-                            <div class="count">7.538</div>
-                            <div class="title">Purchased</div>
-                        </div><!--/.info-box-->
-                    </div><!--/.col-->
-
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="info-box dark-bg">
-                            <i class="fa fa-thumbs-o-up"></i>
-                            <div class="count">4.362</div>
-                            <div class="title">Order</div>
-                        </div><!--/.info-box-->
-                    </div><!--/.col-->
-
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="info-box green-bg">
-                            <i class="fa fa-cubes"></i>
-                            <div class="count">1.426</div>
-                            <div class="title">Stock</div>
-                        </div><!--/.info-box-->
-                    </div><!--/.col-->
-
-                </div><!--/.row-->
-
-
-                <div class="row">
-                    <div class="col-lg-9 col-md-12">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2><i class="fa fa-map-marker red"></i><strong>Countries</strong></h2>
-                                <div class="panel-actions">
-                                    <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                                    <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="panel-body-map">
-                                <div id="map" style="height:380px;"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- List starts -->
-                        <ul class="today-datas">
-                            <!-- List #1 -->
-                            <li>
-                                <!-- Graph -->
-                                <div><span id="todayspark1" class="spark"></span></div>
-                                <!-- Text -->
-                                <div class="datas-text">11,500 visitors/day</div>
-                            </li>
-                            <li>
-                                <div><span id="todayspark2" class="spark"></span></div>
-                                <div class="datas-text">15,000 Pageviews</div>
-                            </li>
-                            <li>
-                                <div><span id="todayspark3" class="spark"></span></div>
-                                <div class="datas-text">30.55% Bounce Rate</div>
-                            </li>
-                            <li>
-                                <div><span id="todayspark4" class="spark"></span></div>
-                                <div class="datas-text">$16,00 Revenue/Day</div>
-                            </li>
-                            <li>
-                                <div><span id="todayspark5" class="spark"></span></div>
-                                <div class="datas-text">12,000000 visitors every Month</div>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div>
-
-
-                <!-- Today status end -->
-
-
-                <div class="row">
-
-                    <div class="col-lg-9 col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
-                                <div class="panel-actions">
-                                    <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                                    <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <table class="table bootstrap-datatable countries">
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Country</th>
-                                        <th>Users</th>
-                                        <th>Online</th>
-                                        <th>Performance</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>Germany</td>
-                                        <td>2563</td>
-                                        <td>1025</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 73%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 27%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">73%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>India</td>
-                                        <td>3652</td>
-                                        <td>2563</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 57%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 43%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">57%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>Spain</td>
-                                        <td>562</td>
-                                        <td>452</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="93" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 93%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 7%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">93%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>Russia</td>
-                                        <td>1258</td>
-                                        <td>958</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 20%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 80%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">20%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>USA</td>
-                                        <td>4856</td>
-                                        <td>3621</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 20%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 80%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">20%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>Brazil</td>
-                                        <td>265</td>
-                                        <td>102</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 20%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 80%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">20%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>Coloumbia</td>
-                                        <td>265</td>
-                                        <td>102</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 20%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 80%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">20%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                        <td>France</td>
-                                        <td>265</td>
-                                        <td>102</td>
-                                        <td>
-                                            <div class="progress thin">
-                                                <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 20%">
-                                                </div>
-                                                <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                                     style="width: 80%">
-                                                </div>
-                                            </div>
-                                            <span class="sr-only">20%</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-                    </div><!--/col-->
-                    <div class="col-md-3">
-
-                        <div class="social-box facebook">
-                            <i class="fa fa-facebook"></i>
-                            <ul>
-                                <li>
-                                    <strong>256k</strong>
-                                    <span>friends</span>
-                                </li>
-                                <li>
-                                    <strong>359</strong>
-                                    <span>feeds</span>
-                                </li>
-                            </ul>
-                        </div><!--/social-box-->
-                    </div>
-                    <div class="col-md-3">
-
-                        <div class="social-box google-plus">
-                            <i class="fa fa-google-plus"></i>
-                            <ul>
-                                <li>
-                                    <strong>962</strong>
-                                    <span>followers</span>
-                                </li>
-                                <li>
-                                    <strong>256</strong>
-                                    <span>circles</span>
-                                </li>
-                            </ul>
-                        </div><!--/social-box-->
-
-                    </div><!--/col-->
-                    <div class="col-md-3">
-
-                        <div class="social-box twitter">
-                            <i class="fa fa-twitter"></i>
-                            <ul>
-                                <li>
-                                    <strong>1562k</strong>
-                                    <span>followers</span>
-                                </li>
-                                <li>
-                                    <strong>2562</strong>
-                                    <span>tweets</span>
-                                </li>
-                            </ul>
-                        </div><!--/social-box-->
-
-                    </div><!--/col-->
-
-                </div>
-
-
-                <!-- statics end -->
-
-
-                <!-- project team & activity start -->
-                <div class="row">
-                    <div class="col-md-4 portlets">
-                        <!-- Widget -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="pull-left">Message</div>
-                                <div class="widget-icons pull-right">
-                                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="panel-body">
-                                <!-- Widget content -->
-                                <div class="padd sscroll">
-
-                                    <ul class="chats">
-
-                                        <!-- Chat by us. Use the class "by-me". -->
-                                        <li class="by-me">
-                                            <!-- Use the class "pull-left" in avatar -->
-                                            <div class="avatar pull-left">
-                                                <img src="img/user.jpg" alt=""/>
-                                            </div>
-
-                                            <div class="chat-content">
-                                                <!-- In meta area, first include "name" and then "time" -->
-                                                <div class="chat-meta">John Smith <span
-                                                            class="pull-right">3 hours ago</span></div>
-                                                Vivamus diam elit diam, consectetur dapibus adipiscing elit.
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </li>
-
-                                        <!-- Chat by other. Use the class "by-other". -->
-                                        <li class="by-other">
-                                            <!-- Use the class "pull-right" in avatar -->
-                                            <div class="avatar pull-right">
-                                                <img src="img/user22.png" alt=""/>
-                                            </div>
-
-                                            <div class="chat-content">
-                                                <!-- In the chat meta, first include "time" then "name" -->
-                                                <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span>
-                                                </div>
-                                                Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing
-                                                elit.
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </li>
-
-                                        <li class="by-me">
-                                            <div class="avatar pull-left">
-                                                <img src="img/user.jpg" alt=""/>
-                                            </div>
-
-                                            <div class="chat-content">
-                                                <div class="chat-meta">John Smith <span
-                                                            class="pull-right">4 hours ago</span></div>
-                                                Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus
-                                                consectetur dapibus adipiscing elit.
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </li>
-
-                                        <li class="by-other">
-                                            <!-- Use the class "pull-right" in avatar -->
-                                            <div class="avatar pull-right">
-                                                <img src="img/user22.png" alt=""/>
-                                            </div>
-
-                                            <div class="chat-content">
-                                                <!-- In the chat meta, first include "time" then "name" -->
-                                                <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span>
-                                                </div>
-                                                Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus
-                                                consectetur dapibus adipiscing elit.
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-                                <!-- Widget footer -->
-                                <div class="widget-foot">
-
-                                    <form class="form-inline">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"
-                                                   placeholder="Type your message here...">
-                                        </div>
-                                        <button type="submit" class="btn btn-info">Send</button>
-                                    </form>
-
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-8">
-                        <!--Project Activity start-->
-                        <section class="panel">
-                            <div class="panel-body progress-panel">
-                                <div class="row">
-                                    <div class="col-lg-8 task-progress pull-left">
-                                        <h1>To Do Everyday</h1>
-                                    </div>
-                                    <div class="col-lg-4">
-                                <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="{{asset('image/admin/avatar1_small.jpg')}}">
-                                        Jenifer smith
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <table class="table table-hover personal-task">
-                                <tbody>
-                                <tr>
-                                    <td>Today</td>
-                                    <td>
-                                        web design
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-important">Upload</span>
-                                    </td>
-                                    <td>
-                                    <span class="profile-ava">
-                                        <img alt="" class="simple" src="{{asset('image/admin/avatar1_small.jpg')}}">
-                                    </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Yesterday</td>
-                                    <td>
-                                        Project Design Task
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Task</span>
-                                    </td>
-                                    <td>
-                                        <div id="work-progress2"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>21-10-14</td>
-                                    <td>
-                                        Generate Invoice
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Task</span>
-                                    </td>
-                                    <td>
-                                        <div id="work-progress3"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>22-10-14</td>
-                                    <td>
-                                        Project Testing
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-primary">To-Do</span>
-                                    </td>
-                                    <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="{{asset('image/admin/avatar1_small.jpg')}}">
-                                      </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>24-10-14</td>
-                                    <td>
-                                        Project Release Date
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-info">Milestone</span>
-                                    </td>
-                                    <td>
-                                        <div id="work-progress4"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>28-10-14</td>
-                                    <td>
-                                        Project Release Date
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-primary">To-Do</span>
-                                    </td>
-                                    <td>
-                                        <div id="work-progress5"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Last week</td>
-                                    <td>
-                                        Project Release Date
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-primary">To-Do</span>
-                                    </td>
-                                    <td>
-                                        <div id="work-progress1"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>last month</td>
-                                    <td>
-                                        Project Release Date
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">To-Do</span>
-                                    </td>
-                                    <td>
-                                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="{{asset('image/admin/avatar1_small.jpg')}}">
-                                      </span>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                        <!--Project Activity end-->
-                    </div>
-                </div>
-                <br><br>
-
-                <div class="row">
-                    <div class="col-md-6 portlets">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2><strong>Calendar</strong></h2>
-                                <div class="panel-actions">
-                                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                                </div>
-
-                            </div>
-                            <br><br><br>
-                            <div class="panel-body">
-                                <!-- Widget content -->
-
-                                <!-- Below line produces calendar. I am using FullCalendar plugin. -->
-                                <div id="calendar"></div>
-
+                            <div class="panel-options">
+                                <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                                <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
                             </div>
                         </div>
+                        <div class="content-box-large box-with-header">
 
+                            Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent
+                            in pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet
+                            metus leo, laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae
+                            tincidunt sed, hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
+                            <br/><br/>
+                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="content-box-header">
+                            <div class="panel-title">New vs Returning Visitors</div>
 
-                    <div class="col-md-6 portlets">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="pull-left">Quick Post</div>
-                                <div class="widget-icons pull-right">
-                                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="padd">
-
-                                    <div class="form quick-post">
-                                        <!-- Edit profile form (not working)-->
-                                        <form class="form-horizontal">
-                                            <!-- Title -->
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2" for="title">Title</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="title">
-                                                </div>
-                                            </div>
-                                            <!-- Content -->
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2" for="content">Content</label>
-                                                <div class="col-lg-10">
-                                                    <textarea class="form-control" id="content"></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- Cateogry -->
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2">Category</label>
-                                                <div class="col-lg-10">
-                                                    <select class="form-control">
-                                                        <option value="">- Choose Cateogry -</option>
-                                                        <option value="1">General</option>
-                                                        <option value="2">News</option>
-                                                        <option value="3">Media</option>
-                                                        <option value="4">Funny</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- Tags -->
-                                            <div class="form-group">
-                                                <label class="control-label col-lg-2" for="tags">Tags</label>
-                                                <div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="tags">
-                                                </div>
-                                            </div>
-
-                                            <!-- Buttons -->
-                                            <div class="form-group">
-                                                <!-- Buttons -->
-                                                <div class="col-lg-offset-2 col-lg-9">
-                                                    <button type="submit" class="btn btn-primary">Publish</button>
-                                                    <button type="submit" class="btn btn-danger">Save Draft</button>
-                                                    <button type="reset" class="btn btn-default">Reset</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-
-                                </div>
-                                <div class="widget-foot">
-                                    <!-- Footer goes here -->
-                                </div>
+                            <div class="panel-options">
+                                <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                                <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
                             </div>
                         </div>
+                        <div class="content-box-large box-with-header">
 
+                            Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent
+                            in pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet
+                            metus leo, laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae
+                            tincidunt sed, hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
+                            <br/><br/>
+                        </div>
                     </div>
-
-                </div>
-                <!-- project team & activity end -->
-
-            </section>
-            <div class="text-right">
-                <div class="credits">
-                    <!--
-                        All the links in the footer should remain intact.
-                        You can delete the links only if you purchased the pro version.
-                        Licensing information: https://bootstrapmade.com/license/
-                        Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-                    -->
-                    <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business
-                        Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
-        </section>
-        <!--main content end-->
-    </section>
-    <!-- container section start -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 panel-warning">
+                <div class="content-box-header panel-heading">
+                    <div class="panel-title ">New vs Returning Visitors</div>
+
+                    <div class="panel-options">
+                        <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                        <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+                    </div>
+                </div>
+                <div class="content-box-large box-with-header">
+                    Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in
+                    pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo,
+                    laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed,
+                    hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
+                    <br/><br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box-large">
+            Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus
+            arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum
+            urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet
+            lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. Mauris
+            condimentum ornare enim ut aliquet. Class aptent taciti sociosqu ad litora torquent per conubia
+            nostra, per inceptos himenaeos. Vivamus molestie massa at accumsan luctus. Aenean ultricies
+            elementum posuere. Praesent ut felis id metus auctor egestas at id augue.
+            <br/><br/>
+            Sed gravida augue risus, in lacinia augue euismod at. Vestibulum pharetra sem nibh. Mauris a enim
+            vel sapien dignissim commodo. Ut tristique fringilla diam, vel pulvinar ligula laoreet euismod.
+            Curabitur sit amet pretium tortor. Nullam tincidunt ultrices metus, a cursus nulla mattis in. Ut
+            risus lorem, fringilla vitae risus quis, ullamcorper elementum nunc. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos. Ut lobortis risus at convallis dictum.
+            Cras luctus, leo ac vestibulum ultrices, justo mi iaculis libero, non gravida arcu erat ut augue. Ut
+            facilisis mollis quam, ut vestibulum magna placerat eu. Integer vulputate odio a lectus tincidunt
+            placerat viverra vel est.
+            <br/><br/>
+            Ut non tincidunt felis. Aliquam urna lacus, dictum vitae dignissim id, molestie vel urna. Quisque et
+            auctor eros, a vulputate nibh. Praesent et dictum risus, vitae congue arcu. In convallis urna non
+            convallis suscipit. Etiam auctor erat nec felis laoreet fringilla. In quis tortor sit amet arcu
+            tempus elementum. In urna tellus, accumsan eget feugiat quis, commodo sit amet dolor. Sed pharetra
+            leo id dignissim tincidunt. Phasellus ac consectetur massa, eu feugiat enim. Phasellus a porta
+            ipsum. Nullam sit amet erat ornare, interdum orci non, ullamcorper magna. Aenean dictum, mi vel
+            tempus mattis, neque sem tincidunt turpis, vitae sollicitudin felis nulla in purus. Nunc vitae erat
+            vitae nibh pellentesque adipiscing. In dignissim dolor vitae metus eleifend, at tincidunt massa
+            luctus. Suspendisse id ligula non leo tincidunt tempor.
+            <br/><br/>
+            Nullam vel ligula arcu. Vivamus convallis libero auctor ante imperdiet, eget adipiscing nunc
+            egestas. Quisque suscipit egestas mi tempor ornare. Fusce a tincidunt erat. Quisque quis risus
+            adipiscing, eleifend dolor vel, ornare risus. Curabitur leo tortor, tempor at iaculis id, elementum
+            sed tellus. Vestibulum sagittis quis mi ut lobortis. Nullam quis mattis diam, feugiat pulvinar sem.
+            <br/><br/>
+            Duis iaculis enim eu massa rhoncus, a aliquam lorem sollicitudin. Sed elementum, dolor sit amet
+            interdum euismod, orci diam vestibulum leo, vel mattis justo sapien in justo. Aenean gravida dolor
+            eu rutrum porta. Quisque mattis, justo quis lacinia pharetra, tortor eros aliquet dolor, et
+            consectetur felis massa eget mi. Aenean dapibus leo erat, ac molestie nibh rhoncus sed. Nam pretium
+            purus et elit convallis facilisis. Vivamus vitae dolor sit amet ante faucibus ornare eu non diam.
+            Donec felis leo, malesuada eu lectus ac, facilisis posuere lorem.
+            <br/><br/>
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            Curabitur porta eu justo non tempor. Pellentesque auctor ultrices rhoncus. Nullam ac aliquam purus.
+            Ut eros elit, malesuada eu purus sed, lacinia imperdiet nibh. Ut vitae pretium nisl, a suscipit
+            elit. Duis quis ornare quam, sed aliquam diam. Nulla condimentum ligula quis dolor tempus, et dictum
+            leo mollis. Suspendisse non cursus lorem. Cras quis cursus tellus. Fusce tincidunt nisl id odio
+            tempor placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum arcu sed
+            metus faucibus rhoncus. Vivamus porta lacinia nisl. Curabitur nec ornare est. Ut congue ullamcorper
+            tortor, sit amet pulvinar lectus.
+            <br/><br/>
+            Curabitur bibendum accumsan felis, in cursus lectus porttitor sed. Aliquam quis est sit amet libero
+            pretium suscipit a vitae velit. Cras sollicitudin suscipit justo ac consectetur. Nam vel iaculis
+            enim. Quisque ut tristique sem. Suspendisse feugiat dignissim nisi nec luctus. Etiam tincidunt id
+            nulla vel mollis. Pellentesque convallis velit at luctus vulputate. Suspendisse potenti. Nam eu
+            elementum tellus, sit amet varius tortor. Aliquam erat volutpat. In mi magna, mattis id bibendum id,
+            viverra quis mauris.
+            <br/><br/>
+            Nulla sed sem quis odio hendrerit rutrum ac sed nisl. Nulla sit amet nibh orci. Donec ornare mollis
+            elit quis egestas. Sed euismod mollis accumsan. In dapibus arcu arcu, id condimentum lacus accumsan
+            eget. Vivamus in sapien non nulla ultricies molestie. Fusce volutpat tellus quis mi laoreet
+            accumsan. Nulla nec neque aliquet lorem scelerisque eleifend eu et leo.
+            <br/><br/>
+            Pellentesque id arcu et odio imperdiet laoreet. Nulla sed eros risus. Sed tellus odio, faucibus et
+            odio eu, eleifend aliquet nisl. In porttitor odio pulvinar ligula tempor, bibendum lacinia metus
+            mattis. Donec venenatis, tellus non aliquet lobortis, magna lorem ullamcorper urna, nec posuere
+            metus lacus non tellus. Aenean condimentum, velit ac tincidunt volutpat, dolor metus pulvinar lacus,
+            a commodo massa dolor eget magna. Ut hendrerit lectus sit amet malesuada tincidunt.
+            <br/><br/>
+            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum tincidunt erat, eu
+            blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed suscipit vel, feugiat sit
+            amet enim. Suspendisse interdum enim at mi tempor commodo. Sed tincidunt sed tortor eu scelerisque.
+            Donec luctus malesuada vulputate. Nunc vel auctor metus, vel adipiscing odio. Aliquam aliquet
+            rhoncus libero, at varius nisi pulvinar nec. Aliquam erat volutpat. Donec ut neque mi. Praesent enim
+            nisl, bibendum vitae ante et, placerat pharetra magna. Donec facilisis nisl turpis, eget facilisis
+            turpis semper non. Maecenas luctus ligula tincidunt imperdiet luctus. Fusce lobortis metus id leo
+            pellentesque, iaculis consequat lacus posuere.
+            <br/><br/>
+            Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in pellentesque
+            diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo, laoreet feugiat enim
+            suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed, hendrerit eget augue. Nam nec
+            vestibulum nisi, eu dignissim nulla.
+            <br/><br/>
+            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur erat. Maecenas
+            in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula nisl sed placerat.
+            Duis posuere lectus non ante iaculis tempor. Etiam ac gravida erat. Sed interdum elit a libero
+            tincidunt placerat. Quisque molestie blandit sem vitae tincidunt. Aliquam feugiat, eros et hendrerit
+            pellentesque, ante magna condimentum sapien, eget ultrices eros libero non orci. Etiam varius diam
+            lectus, id tincidunt erat tempor nec. Praesent interdum, lectus vel dictum convallis, velit est
+            fringilla arcu, eget sollicitudin nibh sem ut magna.
+            <br/><br/>
+            Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus
+            arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum
+            urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet
+            lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. Mauris
+            condimentum ornare enim ut aliquet. Class aptent taciti sociosqu ad litora torquent per conubia
+            nostra, per inceptos himenaeos. Vivamus molestie massa at accumsan luctus. Aenean ultricies
+            elementum posuere. Praesent ut felis id metus auctor egestas at id augue.
+            <br/><br/>
+            Sed gravida augue risus, in lacinia augue euismod at. Vestibulum pharetra sem nibh. Mauris a enim
+            vel sapien dignissim commodo. Ut tristique fringilla diam, vel pulvinar ligula laoreet euismod.
+            Curabitur sit amet pretium tortor. Nullam tincidunt ultrices metus, a cursus nulla mattis in. Ut
+            risus lorem, fringilla vitae risus quis, ullamcorper elementum nunc. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos. Ut lobortis risus at convallis dictum.
+            Cras luctus, leo ac vestibulum ultrices, justo mi iaculis libero, non gravida arcu erat ut augue. Ut
+            facilisis mollis quam, ut vestibulum magna placerat eu. Integer vulputate odio a lectus tincidunt
+            placerat viverra vel est.
+            <br/><br/>
+            Ut non tincidunt felis. Aliquam urna lacus, dictum vitae dignissim id, molestie vel urna. Quisque et
+            auctor eros, a vulputate nibh. Praesent et dictum risus, vitae congue arcu. In convallis urna non
+            convallis suscipit. Etiam auctor erat nec felis laoreet fringilla. In quis tortor sit amet arcu
+            tempus elementum. In urna tellus, accumsan eget feugiat quis, commodo sit amet dolor. Sed pharetra
+            leo id dignissim tincidunt. Phasellus ac consectetur massa, eu feugiat enim. Phasellus a porta
+            ipsum. Nullam sit amet erat ornare, interdum orci non, ullamcorper magna. Aenean dictum, mi vel
+            tempus mattis, neque sem tincidunt turpis, vitae sollicitudin felis nulla in purus. Nunc vitae erat
+            vitae nibh pellentesque adipiscing. In dignissim dolor vitae metus eleifend, at tincidunt massa
+            luctus. Suspendisse id ligula non leo tincidunt tempor.
+            <br/><br/>
+            Nullam vel ligula arcu. Vivamus convallis libero auctor ante imperdiet, eget adipiscing nunc
+            egestas. Quisque suscipit egestas mi tempor ornare. Fusce a tincidunt erat. Quisque quis risus
+            adipiscing, eleifend dolor vel, ornare risus. Curabitur leo tortor, tempor at iaculis id, elementum
+            sed tellus. Vestibulum sagittis quis mi ut lobortis. Nullam quis mattis diam, feugiat pulvinar sem.
+            <br/><br/>
+            Duis iaculis enim eu massa rhoncus, a aliquam lorem sollicitudin. Sed elementum, dolor sit amet
+            interdum euismod, orci diam vestibulum leo, vel mattis justo sapien in justo. Aenean gravida dolor
+            eu rutrum porta. Quisque mattis, justo quis lacinia pharetra, tortor eros aliquet dolor, et
+            consectetur felis massa eget mi. Aenean dapibus leo erat, ac molestie nibh rhoncus sed. Nam pretium
+            purus et elit convallis facilisis. Vivamus vitae dolor sit amet ante faucibus ornare eu non diam.
+            Donec felis leo, malesuada eu lectus ac, facilisis posuere lorem.
+            <br/><br/>
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            Curabitur porta eu justo non tempor. Pellentesque auctor ultrices rhoncus. Nullam ac aliquam purus.
+            Ut eros elit, malesuada eu purus sed, lacinia imperdiet nibh. Ut vitae pretium nisl, a suscipit
+            elit. Duis quis ornare quam, sed aliquam diam. Nulla condimentum ligula quis dolor tempus, et dictum
+            leo mollis. Suspendisse non cursus lorem. Cras quis cursus tellus. Fusce tincidunt nisl id odio
+            tempor placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum arcu sed
+            metus faucibus rhoncus. Vivamus porta lacinia nisl. Curabitur nec ornare est. Ut congue ullamcorper
+            tortor, sit amet pulvinar lectus.
+            <br/><br/>
+            Curabitur bibendum accumsan felis, in cursus lectus porttitor sed. Aliquam quis est sit amet libero
+            pretium suscipit a vitae velit. Cras sollicitudin suscipit justo ac consectetur. Nam vel iaculis
+            enim. Quisque ut tristique sem. Suspendisse feugiat dignissim nisi nec luctus. Etiam tincidunt id
+            nulla vel mollis. Pellentesque convallis velit at luctus vulputate. Suspendisse potenti. Nam eu
+            elementum tellus, sit amet varius tortor. Aliquam erat volutpat. In mi magna, mattis id bibendum id,
+            viverra quis mauris.
+            <br/><br/>
+            Nulla sed sem quis odio hendrerit rutrum ac sed nisl. Nulla sit amet nibh orci. Donec ornare mollis
+            elit quis egestas. Sed euismod mollis accumsan. In dapibus arcu arcu, id condimentum lacus accumsan
+            eget. Vivamus in sapien non nulla ultricies molestie. Fusce volutpat tellus quis mi laoreet
+            accumsan. Nulla nec neque aliquet lorem scelerisque eleifend eu et leo.
+            <br/><br/>
+            Pellentesque id arcu et odio imperdiet laoreet. Nulla sed eros risus. Sed tellus odio, faucibus et
+            odio eu, eleifend aliquet nisl. In porttitor odio pulvinar ligula tempor, bibendum lacinia metus
+            mattis. Donec venenatis, tellus non aliquet lobortis, magna lorem ullamcorper urna, nec posuere
+            metus lacus non tellus. Aenean condimentum, velit ac tincidunt volutpat, dolor metus pulvinar lacus,
+            a commodo massa dolor eget magna. Ut hendrerit lectus sit amet malesuada tincidunt.
+            <br/><br/>
+            Ut tristique adipiscing mauris, sit amet suscipit metus porta quis. Donec dictum tincidunt erat, eu
+            blandit ligula. Nam sit amet dolor sapien. Quisque velit erat, congue sed suscipit vel, feugiat sit
+            amet enim. Suspendisse interdum enim at mi tempor commodo. Sed tincidunt sed tortor eu scelerisque.
+            Donec luctus malesuada vulputate. Nunc vel auctor metus, vel adipiscing odio. Aliquam aliquet
+            rhoncus libero, at varius nisi pulvinar nec. Aliquam erat volutpat. Donec ut neque mi. Praesent enim
+            nisl, bibendum vitae ante et, placerat pharetra magna. Donec facilisis nisl turpis, eget facilisis
+            turpis semper non. Maecenas luctus ligula tincidunt imperdiet luctus. Fusce lobortis metus id leo
+            pellentesque, iaculis consequat lacus posuere.
+            <br/><br/>
+            Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in pellentesque
+            diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo, laoreet feugiat enim
+            suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed, hendrerit eget augue. Nam nec
+            vestibulum nisi, eu dignissim nulla.
+            <br/><br/>
+            Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque sed consectetur erat. Maecenas
+            in elementum libero. Sed consequat pellentesque ultricies. Ut laoreet vehicula nisl sed placerat.
+            Duis posuere lectus non ante iaculis tempor. Etiam ac gravida erat. Sed interdum elit a libero
+            tincidunt placerat. Quisque molestie blandit sem vitae tincidunt. Aliquam feugiat, eros et hendrerit
+            pellentesque, ante magna condimentum sapien, eget ultrices eros libero non orci. Etiam varius diam
+            lectus, id tincidunt erat tempor nec. Praesent interdum, lectus vel dictum convallis, velit est
+            fringilla arcu, eget sollicitudin nibh sem ut magna.
+            <br/><br/>
+            Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus
+            arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum
+            urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet
+            lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. Mauris
+            condimentum ornare enim ut aliquet. Class aptent taciti sociosqu ad litora torquent per conubia
+            nostra, per inceptos himenaeos. Vivamus molestie massa at accumsan luctus. Aenean ultricies
+            elementum posuere. Praesent ut felis id metus auctor egestas at id augue.
+            <br/><br/>
+            Sed gravida augue risus, in lacinia augue euismod at. Vestibulum pharetra sem nibh. Mauris a enim
+            vel sapien dignissim commodo. Ut tristique fringilla diam, vel pulvinar ligula laoreet euismod.
+            Curabitur sit amet pretium tortor. Nullam tincidunt ultrices metus, a cursus nulla mattis in. Ut
+            risus lorem, fringilla vitae risus quis, ullamcorper elementum nunc. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos. Ut lobortis risus at convallis dictum.
+            Cras luctus, leo ac vestibulum ultrices, justo mi iaculis libero, non gravida arcu erat ut augue. Ut
+            facilisis mollis quam, ut vestibulum magna placerat eu. Integer vulputate odio a lectus tincidunt
+            placerat viverra vel est.
+            <br/><br/>
+            Ut non tincidunt felis. Aliquam urna lacus, dictum vitae dignissim id, molestie vel urna. Quisque et
+            auctor eros, a vulputate nibh. Praesent et dictum risus, vitae congue arcu. In convallis urna non
+            convallis suscipit. Etiam auctor erat nec felis laoreet fringilla. In quis tortor sit amet arcu
+            tempus elementum. In urna tellus, accumsan eget feugiat quis, commodo sit amet dolor. Sed pharetra
+            leo id dignissim tincidunt. Phasellus ac consectetur massa, eu feugiat enim. Phasellus a porta
+            ipsum. Nullam sit amet erat ornare, interdum orci non, ullamcorper magna. Aenean dictum, mi vel
+            tempus mattis, neque sem tincidunt turpis, vitae sollicitudin felis nulla in purus. Nunc vitae erat
+            vitae nibh pellentesque adipiscing. In dignissim dolor vitae metus eleifend, at tincidunt massa
+            luctus. Suspendisse id ligula non leo tincidunt tempor.
+            <br/><br/>
+            Nullam vel ligula arcu. Vivamus convallis libero auctor ante imperdiet, eget adipiscing nunc
+            egestas. Quisque suscipit egestas mi tempor ornare. Fusce a tincidunt erat. Quisque quis risus
+            adipiscing, eleifend dolor vel, ornare risus. Curabitur leo tortor, tempor at iaculis id, elementum
+            sed tellus. Vestibulum sagittis quis mi ut lobortis. Nullam quis mattis diam, feugiat pulvinar sem.
+            <br/><br/>
+            Duis iaculis enim eu massa rhoncus, a aliquam lorem sollicitudin. Sed elementum, dolor sit amet
+            interdum euismod, orci diam vestibulum leo, vel mattis justo sapien in justo. Aenean gravida dolor
+            eu rutrum porta. Quisque mattis, justo quis lacinia pharetra, tortor eros aliquet dolor, et
+            consectetur felis massa eget mi. Aenean dapibus leo erat, ac molestie nibh rhoncus sed. Nam pretium
+            purus et elit convallis facilisis. Vivamus vitae dolor sit amet ante faucibus ornare eu non diam.
+            Donec felis leo, malesuada eu lectus ac, facilisis posuere lorem.
+            <br/><br/>
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            Curabitur porta eu justo non tempor. Pellentesque auctor ultrices rhoncus. Nullam ac aliquam purus.
+            Ut eros elit, malesuada eu purus sed, lacinia imperdiet nibh. Ut vitae pretium nisl, a suscipit
+            elit. Duis quis ornare quam, sed aliquam diam. Nulla condimentum ligula quis dolor tempus, et dictum
+            leo mollis. Suspendisse non cursus lorem. Cras quis cursus tellus. Fusce tincidunt nisl id odio
+            tempor placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum arcu sed
+            metus faucibus rhoncus. Vivamus porta lacinia nisl. Curabitur nec ornare est. Ut congue ullamcorper
+            tortor, sit amet pulvinar lectus.
+            <br/><br/>
+            Curabitur bibendum accumsan felis, in cursus lectus porttitor sed. Aliquam quis est sit amet libero
+            pretium suscipit a vitae velit. Cras sollicitudin suscipit justo ac consectetur. Nam vel iaculis
+            enim. Quisque ut tristique sem. Suspendisse feugiat dignissim nisi nec luctus. Etiam tincidunt id
+            nulla vel mollis. Pellentesque convallis velit at luctus vulputate. Suspendisse potenti. Nam eu
+            elementum tellus, sit amet varius tortor. Aliquam erat volutpat. In mi magna, mattis id bibendum id,
+            viverra quis mauris.
+            <br/><br/>
+            Nulla sed sem quis odio hendrerit rutrum ac sed nisl. Nulla sit amet nibh orci. Donec ornare mollis
+            elit quis egestas. Sed euismod mollis accumsan. In dapibus arcu arcu, id condimentum lacus accumsan
+            eget. Vivamus in sapien non nulla ultricies molestie. Fusce volutpat tellus quis mi laoreet
+            accumsan. Nulla nec neque aliquet lorem scelerisque eleifend eu et leo.
+            <br/><br/>
+            Pellentesque id arcu et odio imperdiet laoreet. Nulla sed eros risus. Sed tellus odio, faucibus et
+            odio eu, eleifend aliquet nisl. In porttitor odio pulvinar ligula tempor, bibendum lacinia metus
+            mattis. Donec venenatis, tellus non aliquet lobortis, magna lorem ullamcorper urna, nec posuere
+            metus lacus non tellus. Aenean condimentum, velit ac tincidunt volutpat, dolor metus pulvinar lacus,
+            a commodo massa dolor eget magna. Ut hendrerit lectus sit amet malesuada tincidunt.
+            <br/><br/>
+        </div>
+    </div>
+    </div>
+    </div>
 
 @stop
