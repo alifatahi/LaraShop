@@ -16,13 +16,25 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="{{route('add_product')}}" method="post">
+                        <form action="{{route('add_product')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             Product Name:
                             <input type="text" name="pro_name" class="form-control">
                             <br>
                             Product Price:
                             <input type="text" name="pro_price" class="form-control">
+                            <br>
+                            Product Code:
+                            <input type="text" name="pro_code" class="form-control">
+                            <br>
+                            Product Image:
+                            <input type="file" name="pro_img" class="form-control">
+                            <br>
+                            Product Info:
+                            <input type="text" name="pro_info" class="form-control">
+                            <br>
+                            Special Price:
+                            <input type="text" name="spl_price" class="form-control">
                             <br>
                             <input type="submit" value="submit" class="btn btn-success">
                         </form>
