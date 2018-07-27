@@ -1,9 +1,31 @@
+@charset 'utf-8';
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// Abstracts
+@import 'abstracts/variables';
 
-// Variables
-@import "variables";
+// Base
+@import 'base/reset';
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/typography';
+@import 'base/utility';
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Components
+@import 'components/breadcrumbs';
+@import 'components/buttons';
+@import 'components/section-description';
+@import 'components/sidebar';
+@import 'components/might-like';
+@import 'components/form';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+
+// Pages
+@import 'pages/landing-page';
+@import 'pages/shop';
+@import 'pages/product';
+@import 'pages/cart';
+@import 'pages/checkout';
+@import 'pages/thankyou';
