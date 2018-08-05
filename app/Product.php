@@ -20,6 +20,11 @@ class Product extends Model
     }
 
 
+    /**
+     *  Method for check might like
+     * @param $query
+     * @return mixed
+     */
     public function scopeMightAlsoLike($query)
     {
         return $query->inRandomOrder()->take(4);
