@@ -7,6 +7,7 @@ use App\Http\Requests\CheckoutRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Cartalyst\Stripe\Exception\CardErrorException;
+
 class CheckoutController extends Controller
 {
     /**
@@ -23,13 +24,14 @@ class CheckoutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CheckoutRequest $request)
     {
+        //        Return Orders with slug and qty to Json
         $contents = Cart::content()->map(function ($item) {
-            return $item->model->slug.', '.$item->qty;
+            return $item->model->slug . ', ' . $item->qty;
         })->values()->toJson();
 
         try {
